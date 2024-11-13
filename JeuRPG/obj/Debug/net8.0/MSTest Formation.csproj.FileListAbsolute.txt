@@ -1,0 +1,14 @@
+C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\bin\Debug\net8.0\MSTest Formation.exe
+C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\bin\Debug\net8.0\MSTest Formation.deps.json
+C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\bin\Debug\net8.0\MSTest Formation.runtimeconfig.json
+C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\bin\Debug\net8.0\MSTest Formation.dll
+C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\bin\Debug\net8.0\MSTest Formation.pdb
+C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\obj\Debug\net8.0\MSTest Formation.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\obj\Debug\net8.0\MSTest Formation.AssemblyInfoInputs.cache
+C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\obj\Debug\net8.0\MSTest Formation.AssemblyInfo.cs
+C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\obj\Debug\net8.0\MSTest Formation.csproj.CoreCompileInputs.cache
+C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\obj\Debug\net8.0\MSTest Formation.dll
+C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\obj\Debug\net8.0\refint\MSTest Formation.dll
+C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\obj\Debug\net8.0\MSTest Formation.pdb
+C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\obj\Debug\net8.0\MSTest Formation.genruntimeconfig.cache
+C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\obj\Debug\net8.0\ref\MSTest Formation.dll
