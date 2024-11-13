@@ -18,10 +18,8 @@ namespace MSTest
             // string monstre = "Gobelin"; // On fausse le test volontairement pour vérifier qu'on ne créer pas de faux positif
 
             // Assert : On vérifie que le monstre a bien été créé et que ses statistiques sont cohérentes
-            if (monstre.GetType() != typeof(Monstre) || monstre == null)
-            {
-                Assert.Fail();
-            }
+            Assert.IsNotNull(monstre); // Si "monstre" est null, le test échoue
+            Assert.IsInstanceOfType(monstre, typeof(Monstre)); // Si "monstre" n'est pas une instance de Monstre, le test échoue
         }
     }
 }

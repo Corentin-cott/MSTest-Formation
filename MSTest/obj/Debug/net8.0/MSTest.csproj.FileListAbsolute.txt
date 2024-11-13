@@ -115,3 +115,4 @@ C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application 
 C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\MSTest\obj\Debug\net8.0\MSTest.pdb
 C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\MSTest\obj\Debug\net8.0\MSTest.genruntimeconfig.cache
 C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\MSTest\obj\Debug\net8.0\ref\MSTest.dll
+C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\MSTest\obj\Debug\net8.0\MSTest.sourcelink.json

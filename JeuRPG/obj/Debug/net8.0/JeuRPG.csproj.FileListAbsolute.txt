@@ -26,3 +26,4 @@ C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application 
 C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\JeuRPG\obj\Debug\net8.0\JeuRPG.pdb
 C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\JeuRPG\obj\Debug\net8.0\JeuRPG.genruntimeconfig.cache
 C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\JeuRPG\obj\Debug\net8.0\ref\JeuRPG.dll
+C:\Users\ccottereau\Documents\Formations\OpenClassroom\Testez votre application CSharp\MSTest Formation\JeuRPG\obj\Debug\net8.0\JeuRPG.sourcelink.json
