@@ -1,4 +1,4 @@
-# MSTest Formation (Avec JeuRPG)
+# JeuRPG & MSTest
 
 ## Sommaire
 
