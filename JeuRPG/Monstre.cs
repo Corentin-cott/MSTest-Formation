@@ -13,14 +13,32 @@
         public void Attaquer(Combat combat, Joueur joueur)
         {
             int degats = Combat.CalculDegats(Attaque, joueur.Defense);
-            joueur.Vie -= degats;
-            if (joueur.Vie < 0) { joueur.Vie = 0; }
+            Boolean estVaincu = joueur.InfligeDegats(degats);
             System.Console.WriteLine($"\n{Nom} vous inflige {degats} points de dégâts !");
             System.Console.WriteLine($"Il vous reste {joueur.Vie}/{joueur.MaxVie} points de vie.");
-            if (joueur.Vie == 0)
+            if (estVaincu)
             {
                 System.Console.WriteLine($"{Nom} vous a vaincu...");
             }
+        }
+
+        public Boolean InfligeDegats(int degats)
+        {
+            Vie -= degats;
+            if (Vie <= 0) {
+                Vie = 0;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void Soigne(int soins)
+        {
+            Vie += soins;
+            if (Vie > MaxVie) { Vie = MaxVie; }
         }
     }
 

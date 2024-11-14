@@ -14,8 +14,8 @@
 
             // Création d'une instance de Joueur
             System.Console.WriteLine("# Bienvenue aventurier ! Dites moi, quel est votre nom ?");
-            string nom = DemanderNomJoueur();
-            Joueur joueur = new Joueur(nom, 200, 10, 5, 5);
+            Joueur joueur = new("", 200, 10, 5, 5);
+            joueur.DemandeNom();
             System.Console.WriteLine($"# Bienvenue {joueur.Nom} ! Vous avez {joueur.Vie} points de vie, {joueur.Attaque} points d'attaque et {joueur.Defense} points de défense.");
 
             // Lancement des vagues de combat
@@ -63,17 +63,6 @@
                     }
                 }
             }
-        }
-
-        static string DemanderNomJoueur()
-        {
-            string nom = Console.ReadLine();
-            while (nom == "")
-            {
-                System.Console.WriteLine("# Ne sois pas timide, aventurier !");
-                nom = Console.ReadLine();
-            }
-            return nom;
-        }        
+        }   
     }
 }
