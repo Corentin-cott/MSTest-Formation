@@ -125,10 +125,13 @@ namespace MSTest_Formation
             }
             System.Console.WriteLine($"\n# Vous avez équipé {objet.Nom}.");
             cible.BoostStats(objet.MaxVieBoost, objet.AttaqueBoost, objet.DefenseBoost, objet.MagieBoost);
+            System.Console.WriteLine($"# Vous recevez : +{objet.MaxVieBoost} points de vie, +{objet.AttaqueBoost} points d'attaque, +{objet.DefenseBoost} points de défense et +{objet.MagieBoost} points de magie.");
+            System.Console.WriteLine($"# Vous avez maintenant {cible.Vie}/{cible.MaxVie} points de vie, {cible.Attaque} points d'attaque, {cible.Defense} points de défense et {cible.Magie} points de magie.");
         }
 
         public static void DemanderEquipeObjet(Objet objet, Entitee cible)
         {
+            System.Console.WriteLine($"\n# Vous avez trouvé {objet.Nom} ({objet.Type}) ! [+{objet.MaxVieBoost} PV | +{objet.AttaqueBoost} ATQ | +{objet.DefenseBoost} DEF | +{objet.MagieBoost} MAG]");
             System.Console.WriteLine($"\nVoulez-vous l'équiper ?\n1 - Oui\n2 - Non");
             Boolean reponseValide = true;
             while (reponseValide)
@@ -152,8 +155,6 @@ namespace MSTest_Formation
             if (cible.Armure == "Aucune" && objet.Type == "Armure" || cible.Arme == "Aucune" && objet.Type == "Arme" || cible.Bouclier == "Aucun" && objet.Type == "Bouclier" || cible.Accessoire == "Aucun" && objet.Type == "Accessoire")
             {
                 EquipeObjet(objet, cible);
-                System.Console.WriteLine($"# Vous recevez : +{objet.MaxVieBoost} points de vie, +{objet.AttaqueBoost} points d'attaque, +{objet.DefenseBoost} points de défense et +{objet.MagieBoost} points de magie.");
-                System.Console.WriteLine($"# Vous avez maintenant {cible.Vie}/{cible.MaxVie} points de vie, {cible.Attaque} points d'attaque, {cible.Defense} points de défense et {cible.Magie} points de magie.");
             }
             else
             {
