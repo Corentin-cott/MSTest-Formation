@@ -13,12 +13,26 @@
 
             int vie = 50 + (NbVagues * 5);
             int attaque = 5 + random.Next(NbVagues, NbVagues + 5);
-            int defense = random.Next(NbVagues, NbVagues + 2);
-            int magie = 0;
+            int defense = random.Next(NbVagues, NbVagues + 5);
+            int magie = 2 + random.Next(0, NbVagues * 2);
             Entitee monstre = new(false, nom, vie, attaque, defense, magie);
             return monstre;
         }
 
+        public Entitee GenBoss()
+        {
+            Random random = new Random();
+
+            string[] noms = { "Gargantua", "Hydre", "Kraken", "Sphinx", "Cerbère", "Basilic", "Chimère", "Phénix", "Léviathan", "Dragon de l'Apocalypse" };
+            string nom = noms[random.Next(0, noms.Length)];
+
+            int vie = 100 + (NbVagues * 10);
+            int attaque = 10 + NbVagues;
+            int defense = NbVagues + 2;
+            int magie = 5 + random.Next(0, NbVagues * 2);
+            Entitee boss = new(false, nom, vie, attaque, defense, magie);
+            return boss;
+        }
 
         public static int CalculDegats(int attaque, int defense)
         {

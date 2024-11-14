@@ -1,4 +1,6 @@
-﻿namespace MSTest_Formation
+﻿using System.Net.NetworkInformation;
+
+namespace MSTest_Formation
 {
     class Program
     {
@@ -14,7 +16,7 @@
 
             // Création d'une instance de Joueur
             System.Console.WriteLine("# Bienvenue aventurier ! Dites moi, quel est votre nom ?");
-            Entitee joueur = new(true, "placeholder", 200, 10, 5, 10);
+            Entitee joueur = new(true, "placeholder", 200, 8, 5, 10);
             joueur.DemandeNom();
             System.Console.WriteLine($"# Bienvenue {joueur.Nom} ! Vous avez {joueur.Vie} points de vie, {joueur.Attaque} points d'attaque et {joueur.Defense} points de défense.");
 
@@ -26,12 +28,30 @@
                 {
                     break; 
                 }
-                System.Console.WriteLine($"\n# Vague {i + 1} : Préparez-vous !\n");
-                Entitee monstre = combat.GenMonstre();
+
+                // Pas de chiffre a virgule
+                float bossVague1 = 5 / 2;
+                int bossVague2 = combat.NbVagues;
+
+                Entitee monstre;
+                if ( i+1 == bossVague1 || i+1 == bossVague2)
+                {
+                    System.Console.WriteLine($"\n# Vague {i + 1} : Combat de Boss ! Préparez-vous !!");
+                    monstre = combat.GenBoss();
+                }
+                else
+                {
+                    System.Console.WriteLine($"\n# Vague {i + 1} : Préparez-vous !!");
+                    monstre = combat.GenMonstre();
+                }
+
                 System.Console.WriteLine($"# Un {monstre.Nom} apparaît ! Il a {monstre.Vie} points de vie, {monstre.Attaque} points d'attaque et {monstre.Defense} points de défense.");
+                int j = 0;
                 while (joueur.Vie > 0 && monstre.Vie > 0)
                 {
-                    System.Console.WriteLine("\n# Que voulez-vous faire ?\n1 - Attaquer\n2 - Se soigner");
+                    j ++;
+                    System.Console.WriteLine($"\n# Vague {i} : Tour n°{j}");
+                    System.Console.WriteLine("# Que voulez-vous faire ?\n1 - Attaquer\n2 - Se soigner");
                     string choix = Console.ReadLine();
                     int choixInt;
                     while (!int.TryParse(choix, out choixInt))
