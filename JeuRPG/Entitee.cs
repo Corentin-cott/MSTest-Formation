@@ -1,7 +1,8 @@
 ﻿namespace MSTest_Formation
 {
-    public class Joueur(string nom, int vie, int attaque, int defense, int magie)
+    public class Entitee(Boolean joueur, string nom, int vie, int attaque, int defense, int magie)
     {
+        public Boolean Joueur { get; set; } = joueur;
         public string Nom { get; set; } = nom;
         public int Vie { get; set; } = vie;
 
@@ -17,29 +18,47 @@
             while (true) {
                 Nom = Console.ReadLine();
                 if (Nom.Length > 0 && !Nom.Contains(" ")) { break; }
-                System.Console.WriteLine("# Désolé aventurier, je n'ai pas entendu votre nom... Pouvez-vous le répéter ?");
+
+                if (Joueur) { System.Console.WriteLine("# Désolé aventurier, je n'ai pas entendu votre nom... Pouvez-vous le répéter ?"); }
+                else { System.Console.WriteLine("# Désolé aventurier, je n'ai pas entendu son nom... Pouvez-vous le répéter ?"); }
             }
         }
 
-        public void Attaquer(Combat combat, Monstre monstre)
+        public void Attaquer(Entitee cible)
         {
-            int degats = Combat.CalculDegats(Attaque, monstre.Defense);
-            Boolean estVaincu = monstre.InfligeDegats(degats);
-            System.Console.WriteLine($"\nVous infligez {degats} points de dégâts au {monstre.Nom} !");
-            System.Console.WriteLine($"Il lui reste {monstre.Vie}/{monstre.MaxVie} points de vie.");
-            if (estVaincu)
-            {
-                System.Console.WriteLine($"Vous avez vaincu le {monstre.Nom} !");
-                DemanderAjoutAttribut();
+            int degats = Combat.CalculDegats(Attaque, cible.Defense);
+            Boolean estVaincu = cible.InfligeDegats(degats);
+            if (Joueur) {
+                System.Console.WriteLine($"\nVous infligez {degats} points de dégâts au {cible.Nom} !");
+                System.Console.WriteLine($"Il lui reste {cible.Vie}/{cible.MaxVie} points de vie.");
+                if (estVaincu) {
+                    System.Console.WriteLine($"Vous avez vaincu le {cible.Nom} !");
+                    DemanderAjoutAttribut();
+                }
+            } else {
+                System.Console.WriteLine($"\n{Nom} vous inflige {degats} points de dégâts !");
+                System.Console.WriteLine($"Il vous reste {cible.Vie}/{cible.MaxVie} points de vie.");
+                if (estVaincu)
+                {
+                    System.Console.WriteLine($"{Nom} vous a vaincu...");
+                }
             }
         }
 
-        public void SeSoigner(Combat combat)
+        public void SeSoigner()
         {
             int soins = Combat.CalculSoins(Magie);
             Soigne(soins);
-            System.Console.WriteLine($"\nVous vous soignez et récupérez {soins} points de vie !");
-            System.Console.WriteLine($"Vous avez maintenant {Vie}/{MaxVie} points de vie.");
+            if (Joueur)
+            {
+                System.Console.WriteLine($"\nVous vous soignez et récupérez {soins} points de vie !");
+                System.Console.WriteLine($"Vous avez maintenant {Vie}/{MaxVie} points de vie.");
+            }
+            else
+            {
+                System.Console.WriteLine($"\n{Nom} se soigne et récupère {soins} points de vie !");
+                System.Console.WriteLine($"{Nom} a maintenant {Vie}/{MaxVie} points de vie.");
+            }
         }
 
         
@@ -64,6 +83,8 @@
 
         public void DemanderAjoutAttribut()
         {
+            if (!Joueur) { return; } // On ne demande pas à un monstre d'ajouter des attributs
+
             System.Console.WriteLine("\n# Vous avez trouvé un bonus ! Quel statistique augmenter ?\n1 - Vie\n2 - Attaque\n3 - Défense\n4 - Magie");
             string choix = Console.ReadLine();
             int choixInt;

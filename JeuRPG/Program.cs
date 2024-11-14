@@ -14,26 +14,20 @@
 
             // Création d'une instance de Joueur
             System.Console.WriteLine("# Bienvenue aventurier ! Dites moi, quel est votre nom ?");
-            Joueur joueur = new("", 200, 10, 5, 5);
+            Entitee joueur = new(true, "placeholder", 200, 10, 5, 10);
             joueur.DemandeNom();
             System.Console.WriteLine($"# Bienvenue {joueur.Nom} ! Vous avez {joueur.Vie} points de vie, {joueur.Attaque} points d'attaque et {joueur.Defense} points de défense.");
 
             // Lancement des vagues de combat
-            for (int i = 0; i < combat.NbVagues; i++)
+            int i;
+            for (i = 0; i < combat.NbVagues; i++)
             {
                 if (joueur.Vie == 0) 
                 {
-                    System.Console.WriteLine($"# Vous avez survécu à {i} vagues de monstres ! Félicitations !");
-                    System.Console.WriteLine($"# Vos statistiques finales étaient : " +
-                        $"- {joueur.Vie}/{joueur.MaxVie} points de vie, " +
-                        $"- {joueur.Attaque} points d'attaque" +
-                        $"- {joueur.Defense} points de défense" +
-                        $"- {joueur.Magie} points de magie"
-                    );
                     break; 
                 }
                 System.Console.WriteLine($"\n# Vague {i + 1} : Préparez-vous !\n");
-                Monstre monstre = combat.GenMonstre();
+                Entitee monstre = combat.GenMonstre();
                 System.Console.WriteLine($"# Un {monstre.Nom} apparaît ! Il a {monstre.Vie} points de vie, {monstre.Attaque} points d'attaque et {monstre.Defense} points de défense.");
                 while (joueur.Vie > 0 && monstre.Vie > 0)
                 {
@@ -48,10 +42,10 @@
                     switch (choixInt)
                     {
                         case 1:
-                            joueur.Attaquer(combat, monstre);
+                            joueur.Attaquer(monstre);
                             break;
                         case 2:
-                            joueur.SeSoigner(combat);
+                            joueur.SeSoigner();
                             break;
                         default:
                             System.Console.WriteLine("# Je n'ai pas compris votre choix, aventurier.");
@@ -59,10 +53,17 @@
                     }
                     if (monstre.Vie > 0)
                     {
-                        monstre.Attaquer(combat, joueur);
+                        monstre.Attaquer(joueur);
                     }
                 }
             }
+            System.Console.WriteLine($"\n# Vous avez survécu à {i} vagues de monstres ! Félicitations !");
+            System.Console.WriteLine($"# Vos statistiques finales étaient : " +
+                $"\n- {joueur.Vie}/{joueur.MaxVie} points de vie" +
+                $"\n- {joueur.Attaque} points d'attaque" +
+                $"\n- {joueur.Defense} points de défense" +
+                $"\n- {joueur.Magie} points de magie"
+            );
         }   
     }
 }

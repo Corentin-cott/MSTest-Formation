@@ -4,18 +4,18 @@
     {
         public int NbVagues { get; set; } = nbVagues;
 
-        public Monstre GenMonstre()
+        public Entitee GenMonstre()
         {
             Random random = new Random();
 
-            string[] noms = { "Gobelin", "Orc", "Troll", "Dragon", "Renard Bleue" };
+            string[] noms = { "Gobelin", "Orc", "Troll", "Dragon", "Loup", "Squelette", "Zombie", "Goule", "Vampire", "Loup-garou", "Renard Bleue" };
             string nom = noms[random.Next(0, noms.Length)];
 
             int vie = 50 + (NbVagues * 5);
             int attaque = 5 + random.Next(NbVagues, NbVagues + 5);
             int defense = random.Next(NbVagues, NbVagues + 2);
             int magie = 0;
-            Monstre monstre = new(nom, vie, attaque, defense, magie);
+            Entitee monstre = new(false, nom, vie, attaque, defense, magie);
             return monstre;
         }
 

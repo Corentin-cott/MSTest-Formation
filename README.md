@@ -15,13 +15,11 @@ MSTest-Formation est un dépôt contenant une application console qui simule un 
 
 [JeuRPG](https://github.com/Corentin-cott/MSTest-Formation/tree/main/JeuRPG) est une application console qui servira de support pour ma formation. C'est un jeu de type RPG, basé sur des combats par vagues. À chaque vague, un monstre généré aléatoirement apparaîtra. Et à chaque combat gagné, le joueur gagne un point d'attribut à attribuer à l'une de ses statistiques : Vie, Attaque, Défense, Magie.
 
-Le jeu est composé de 3 classes :
-- **Joueur** (Nom, Vie, MaxVie, Attaque, Défense, Magie)
-- **Monstre** (Nom, Vie, MaxVie, Attaque, Défense, Magie)
-- **Combat** (NbVagues)
+Le jeu est composé de 2 classes :
+- **Entitee** (Bool Joueur, String Nom, Int Vie, Int MaxVie, Int Attaque, Int Défense, Int Magie)
+- **Combat** (Int NbVagues)
 
-La classe Joueur possède les méthodes d'actions ainsi que celles gérant l'augmentation des statistiques avec les attributs.
-La classe Monstre possède la méthode attaquer.
+La classe Entitee possède les méthodes d'actions ainsi que celles gérant l'augmentation des statistiques avec les attributs. Elle gère à la fois les actions du joueur et celles du monstre.
 La classe Combat gère la génération des monstres, les calculs de dégâts ainsi que les soins.
 
 ## [MSTest](https://learn.microsoft.com/fr-fr/dotnet/core/testing/unit-testing-with-mstest)
