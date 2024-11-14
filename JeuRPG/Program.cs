@@ -16,7 +16,7 @@ namespace MSTest_Formation
 
             // Création d'une instance de Joueur
             System.Console.WriteLine("# Bienvenue aventurier ! Dites moi, quel est votre nom ?");
-            Entitee joueur = new(true, "placeholder", 200, 8, 5, 10);
+            Entitee joueur = new(true, "placeholder", 200, 12, 5, 10);
             joueur.DemandeNom();
             System.Console.WriteLine($"# Bienvenue {joueur.Nom} ! Vous avez {joueur.Vie} points de vie, {joueur.Attaque} points d'attaque et {joueur.Defense} points de défense.");
 

@@ -14,17 +14,13 @@ namespace MSTest_Formation
 
         public int Magie { get; set; } = magie;
 
-        public void DemandeNom()
-        {
-            // Le nom du joueur doit avoir au moins 1 charactère et il ne peut pas être un espace
-            while (true) {
-                Nom = Console.ReadLine();
-                if (Nom.Length > 0 && !Nom.Contains(" ")) { break; }
+        public string Armure { get; set; } = "Aucune";
 
-                if (Joueur) { System.Console.WriteLine("# Désolé aventurier, je n'ai pas entendu votre nom... Pouvez-vous le répéter ?"); }
-                else { System.Console.WriteLine("# Désolé aventurier, je n'ai pas entendu son nom... Pouvez-vous le répéter ?"); }
-            }
-        }
+        public string Arme { get; set; } = "Aucune";
+
+        public string Bouclier { get; set; } = "Aucun";
+
+        public string Accessoire { get; set; } = "Aucun";
 
         public void Attaquer(Entitee cible)
         {
@@ -37,9 +33,17 @@ namespace MSTest_Formation
                 AfficherBarresVie(cible);
                 if (estVaincu) {
                     System.Console.WriteLine($"Vous avez vaincu le {cible.Nom} !");
+
                     int points;
                     if (cible.MaxVie < 100) { points = 1; } else { points = random.Next(2, 3); }
                     DemanderAjoutAttribut(points);
+
+                    int chancePourObjet = random.Next(1, 1);
+                    if (chancePourObjet == 1)
+                    {
+                        Objet objet = new Objet().GenObjet();
+                        DemanderEquipeObjet(objet, this);
+                    }
                 }
             } else {
                 System.Console.WriteLine($"\n{Nom} vous inflige {degats} points de dégâts !");
@@ -49,26 +53,6 @@ namespace MSTest_Formation
                     System.Console.WriteLine($"{Nom} vous a vaincu...");
                 }
             }
-        }
-
-        public static void AfficherBarresVie(Entitee entitee)
-        {
-            string barreVie = "";
-            // On calcule le pourcentage de vie restant puis affiche une barre de vie avec "█" pour chaque tranche de 5% de vie et "░" pour chaque tranche de 5% de vie manquante
-            if (entitee.MaxVie > 0) {
-                double pourcentageVie = (double)entitee.Vie / entitee.MaxVie;
-                int nbBarres = (int)(pourcentageVie * 10);
-                int i;
-                for (i = 0; i < nbBarres; i++)
-                {
-                    barreVie += "█";
-                }
-                for (i = 0; i < 10 - nbBarres; i++)
-                {
-                    barreVie += "░";
-                }
-            }
-            System.Console.WriteLine($"{barreVie} {entitee.Nom} [{entitee.Vie}/{entitee.MaxVie}]");
         }
 
         public void SeSoigner()
@@ -104,6 +88,107 @@ namespace MSTest_Formation
         {
             Vie += soins;
             if (Vie > MaxVie) { Vie = MaxVie; }
+        }
+
+        public void MalusStats(int vie, int attaque, int defense, int magie)
+        {
+            MaxVie -= vie;
+            Attaque -= attaque;
+            Defense -= defense;
+            Magie -= magie;
+        }
+
+        public void BoostStats(int vie, int attaque, int defense, int magie)
+        {
+            MaxVie += vie;
+            Attaque += attaque;
+            Defense += defense;
+            Magie += magie;
+        }
+
+        public static void EquipeObjet(Objet objet, Entitee cible)
+        {
+            switch (objet.Type)
+            {
+                case "Armure":
+                    cible.Armure = objet.Nom;
+                    break;
+                case "Arme":
+                    cible.Arme = objet.Nom;
+                    break;
+                case "Bouclier":
+                    cible.Bouclier = objet.Nom;
+                    break;
+                case "Accessoire":
+                    cible.Accessoire = objet.Nom;
+                    break;
+            }
+            System.Console.WriteLine($"\n# Vous avez équipé {objet.Nom}.");
+            cible.BoostStats(objet.MaxVieBoost, objet.AttaqueBoost, objet.DefenseBoost, objet.MagieBoost);
+        }
+
+        public static void DemanderEquipeObjet(Objet objet, Entitee cible)
+        {
+            System.Console.WriteLine($"\nVoulez-vous l'équiper ?\n1 - Oui\n2 - Non");
+            Boolean reponseValide = true;
+            while (reponseValide)
+            {
+                string choix = Console.ReadLine();
+
+                switch(choix)
+                {
+                    case "1":
+                        reponseValide = false;
+                        break;
+                    case "2":
+                        reponseValide = false;
+                        return;
+                    default:
+                        System.Console.WriteLine("# Je n'ai pas compris votre choix, aventurier.");
+                        break;
+                }
+            }
+
+            if (cible.Armure == "Aucune" && objet.Type == "Armure" || cible.Arme == "Aucune" && objet.Type == "Arme" || cible.Bouclier == "Aucun" && objet.Type == "Bouclier" || cible.Accessoire == "Aucun" && objet.Type == "Accessoire")
+            {
+                EquipeObjet(objet, cible);
+                System.Console.WriteLine($"# Vous recevez : +{objet.MaxVieBoost} points de vie, +{objet.AttaqueBoost} points d'attaque, +{objet.DefenseBoost} points de défense et +{objet.MagieBoost} points de magie.");
+                System.Console.WriteLine($"# Vous avez maintenant {cible.Vie}/{cible.MaxVie} points de vie, {cible.Attaque} points d'attaque, {cible.Defense} points de défense et {cible.Magie} points de magie.");
+            }
+            else
+            {
+                System.Console.WriteLine($"\n# Vous avez déjà un {objet.Type} équipé. Voulez-vous le remplacer ?\n1 - Oui\n2 - Non");
+                while (true)
+                {
+                    string choix = Console.ReadLine();
+
+                    switch (choix)
+                    {
+                        case "1":
+                            EquipeObjet(objet, cible);
+                            return;
+                        case "2":
+                            System.Console.WriteLine("# Vous avez décidé de jeter cet objet.");
+                            return;
+                        default:
+                            System.Console.WriteLine("# Je n'ai pas compris votre choix, aventurier.");
+                            break;
+                    }
+                }
+            }
+        }
+
+        public void DemandeNom()
+        {
+            // Le nom du joueur doit avoir au moins 1 charactère et il ne peut pas être un espace
+            while (true)
+            {
+                Nom = Console.ReadLine();
+                if (Nom.Length > 0 && !Nom.Contains(" ")) { break; }
+
+                if (Joueur) { System.Console.WriteLine("# Désolé aventurier, je n'ai pas entendu votre nom... Pouvez-vous le répéter ?"); }
+                else { System.Console.WriteLine("# Désolé aventurier, je n'ai pas entendu son nom... Pouvez-vous le répéter ?"); }
+            }
         }
 
         public void DemanderAjoutAttribut(int points)
@@ -149,6 +234,27 @@ namespace MSTest_Formation
                         break;
                 }
             }
+        }
+
+        public static void AfficherBarresVie(Entitee entitee)
+        {
+            string barreVie = "";
+            // On calcule le pourcentage de vie restant puis affiche une barre de vie avec "█" pour chaque tranche de 5% de vie et "░" pour chaque tranche de 5% de vie manquante
+            if (entitee.MaxVie > 0)
+            {
+                double pourcentageVie = (double)entitee.Vie / entitee.MaxVie;
+                int nbBarres = (int)(pourcentageVie * 10);
+                int i;
+                for (i = 0; i < nbBarres; i++)
+                {
+                    barreVie += "█";
+                }
+                for (i = 0; i < 10 - nbBarres; i++)
+                {
+                    barreVie += "░";
+                }
+            }
+            System.Console.WriteLine($"{barreVie} {entitee.Nom} [{entitee.Vie}/{entitee.MaxVie}]");
         }
     }
 }

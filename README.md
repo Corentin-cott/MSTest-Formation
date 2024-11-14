@@ -18,6 +18,7 @@ MSTest-Formation est un dépôt contenant une application console qui simule un 
 Le jeu est composé de 2 classes :
 - **Entitee** (Bool Joueur, String Nom, Int Vie, Int MaxVie, Int Attaque, Int Défense, Int Magie)
 - **Combat** (Int NbVagues)
+- **ObjetsEquipables** (String Nom, Int Attaque, Int Défense, Int Magie)
 
 La classe Entitee possède les méthodes d'actions ainsi que celles gérant l'augmentation des statistiques avec les attributs. Elle gère à la fois les actions du joueur et celles du monstre.
 La classe Combat gère la génération des monstres, les calculs de dégâts ainsi que les soins.
@@ -26,7 +27,7 @@ La classe Combat gère la génération des monstres, les calculs de dégâts ain
 
 [MSTest](https://github.com/Corentin-cott/MSTest-Formation/tree/main/MSTest) est un framework de tests pour les applications .NET. Il permet de créer, organiser et exécuter des tests automatisés afin de vérifier le bon fonctionnement du code. MSTest supporte différents types de tests, y compris les tests unitaires, les tests d'intégration et les tests de bout en bout.
 
-Dans ce projet, nous utilisont aussi la package [FluentAssertion](https://fluentassertions.com/)
+Dans ce projet, nous utilisont aussi la package [FluentAssertion](https://fluentassertions.com/) et [MoQ](https://github.com/devlooped/moq).
 
 ## Contributions
 
